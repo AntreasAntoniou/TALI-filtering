@@ -1,0 +1,39 @@
+{
+    "image": "ghcr.io/antreasantoniou/tali-collector-dev:0.2.0",
+    "runArgs": [
+        "--gpus",
+        "all",
+        "-P"
+    ],
+    "customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": { 
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "/bin/bash"
+					}
+				},
+				"python.defaultInterpreterPath": "/opt/conda/envs/tali-collector/bin/python",
+				"python.languageServer": "Default",
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": true,
+				"python.formatting.blackPath": "/opt/conda/envs/tali-collector/bin/black",
+			},
+			
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"GitHub.copilot-labs",
+				"sourcery.sourcery",
+				"GitHub.copilot"
+
+			]
+		}
+	},
+    "mounts": [{"source": "/mnt/nas", 
+                "target": "/data",
+                "type": "bind" }]
+}
