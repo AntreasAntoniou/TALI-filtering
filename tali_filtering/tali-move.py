@@ -7,8 +7,10 @@ from tabulate import tabulate
 from rich import print
 import shutil
 
-source_table_filepath = pathlib.Path("/data/datasets/tali-wit-2-1/all/")
-target_table_filepath = pathlib.Path("/data/datasets/tali-wit-2-1-buckets/all/")
+source_table_filepath = pathlib.Path("/data/datasets/tali-wit-2-1/captions/relevance")
+target_table_filepath = pathlib.Path(
+    "/data/datasets/tali-wit-2-1-buckets/captions/relevance/"
+)
 
 dir_idx_list = [
     subdir.name

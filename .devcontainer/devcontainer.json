@@ -1,5 +1,5 @@
 {
-    "dockerFile": "Dockerfile",
+    "build": {"dockerfile": "Dockerfile"},
     "runArgs": [
         "--gpus",
         "all",
