@@ -14,7 +14,7 @@ model.eval()
 
 
 @dataclass
-class CLIPOutput:
+class CLIPScoreOutput:
     scores: List[float]
     sorted_scores_idx: List[str]
     reference_text: str
@@ -23,8 +23,7 @@ class CLIPOutput:
 def get_scores(
     reference_text: str,
     image_list: List[torch.Tensor],
-    cutoff_threshold: float = 0.5,
-) -> CLIPOutput:
+) -> CLIPScoreOutput:
 
     reference_text_inputs = processor(
         text=reference_text,
@@ -34,7 +33,6 @@ def get_scores(
     )
 
     reference_text_inputs = reference_text_inputs.to(torch.cuda.current_device())
-
     image_inputs = processor(
         images=image_list,
         return_tensors="pt",
@@ -42,7 +40,7 @@ def get_scores(
         truncation=True,
     )
 
-    image_inputs = image_inputs.to(torch.cuda.current_device())
+    image_inputs.to(torch.cuda.current_device())
 
     with torch.no_grad():
         reference_text_features = model.get_text_features(**reference_text_inputs)
@@ -57,9 +55,9 @@ def get_scores(
 
     sorted_scores_idx = torch.argsort(scores[0], dim=-1, descending=True)
 
-    return CLIPOutput(
-        sorted_scores_idx=sorted_scores_idx,
-        scores=scores,
+    return CLIPScoreOutput(
+        sorted_scores_idx=sorted_scores_idx.detach().cpu(),
+        scores=scores.detach().cpu(),
         reference_text=reference_text,
     )
 

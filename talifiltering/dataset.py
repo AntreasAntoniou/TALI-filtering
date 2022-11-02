@@ -9,6 +9,7 @@ import pyarrow.dataset as ds
 from rich import print
 from rich.traceback import install
 from tqdm import tqdm
+from transformers import data
 
 install()
 
@@ -78,4 +79,4 @@ class TALIDataset(Dataset):
 
 
 if __name__ == "__main__":
-    dataset = TALIDataset("/data/datasets/tali-wit-2-1-buckets")
+    dataset = TALIDataset(data_root="/data/datasets/tali-wit-2-1-buckets")
