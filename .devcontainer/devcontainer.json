@@ -71,8 +71,8 @@
 				"ms-python.vscode-pylance",
 				"GitHub.copilot-labs",
 				"sourcery.sourcery",
-				"GitHub.copilot"
-
+				"GitHub.copilot",
+				"analytic-signal.preview-mp4"
 			]
 		}
 	},
